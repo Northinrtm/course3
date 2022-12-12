@@ -20,7 +20,7 @@ public class ExaminerServiceImpl implements ExaminerService {
         if (amount > questionService.getAll().size()) {
             throw new OutOfSizeException();
         }
-        while (amount < questionSet.size()) {
+        while (amount > questionSet.size()) {
             questionSet.add(questionService.getRandomQuestion());
         }
         return questionSet;
