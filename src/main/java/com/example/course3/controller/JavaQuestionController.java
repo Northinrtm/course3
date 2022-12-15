@@ -2,6 +2,7 @@ package com.example.course3.controller;
 
 import com.example.course3.domain.Question;
 import com.example.course3.service.QuestionService;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

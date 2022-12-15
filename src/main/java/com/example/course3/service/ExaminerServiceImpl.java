@@ -16,10 +16,10 @@ public class ExaminerServiceImpl implements ExaminerService {
 
     @Override
     public Collection<Question> getQuestions(int amount) {
-        Set<Question> questionSet = new HashSet<>();
-        if (amount > questionService.getAll().size()) {
-            throw new OutOfSizeException();
+        if(amount>questionService.getAll().size()){
+            throw new AmoutBoundOfSizeException();
         }
+        Set<Question> questionSet = new HashSet<>();
         while (amount > questionSet.size()) {
             questionSet.add(questionService.getRandomQuestion());
         }
