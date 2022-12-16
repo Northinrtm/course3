@@ -1,4 +1,4 @@
-package com.example.course3.service;
+package com.example.course3.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

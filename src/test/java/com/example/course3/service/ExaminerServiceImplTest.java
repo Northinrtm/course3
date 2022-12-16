@@ -1,6 +1,8 @@
 package com.example.course3.service;
 
 import com.example.course3.domain.Question;
+import com.example.course3.exception.AmoutBoundOfSizeException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -15,22 +17,26 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(MockitoExtension.class)
 class ExaminerServiceImplTest {
-    private final QuestionService questionService = mock(QuestionService.class);
+    private final QuestionService questionService = new JavaQuestionService();
     private final ExaminerService out = new ExaminerServiceImpl(questionService);
 
     @Test
     void getQuestions() {
-        Question q1 = new Question("q1","a1");
-        Question q2 = new Question("q2","a2");
-        Question q3 = new Question("q2","a3");
+        Question q1 = new Question("q1", "a1");
+        Question q2 = new Question("q2", "a2");
+        Question q3 = new Question("q3", "a3");
 
         Collection<Question> expected = new HashSet<>();
         expected.add(q1);
         expected.add(q2);
         expected.add(q3);
 
+        questionService.add(q1);
 
+        assertTrue(out.getQuestions(1).contains(q1));
+
+        assertThrows(AmoutBoundOfSizeException.class,
+                () -> out.getQuestions(2));
     }
 }
